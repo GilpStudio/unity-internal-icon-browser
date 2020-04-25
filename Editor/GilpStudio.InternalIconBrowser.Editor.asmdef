@@ -1,0 +1,10 @@
+{
+    "name": "GilpStudio.InternalIconBrowser.Editor",
+    "references": [
+      "GilpStudio.InternalIconBrowser"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
