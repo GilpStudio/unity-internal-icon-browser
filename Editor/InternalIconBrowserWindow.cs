@@ -8,9 +8,6 @@ using UnityEngine;
 
 public class InternalIconBrowserWindow : EditorWindow
 {
-    private SearchField _searchField;
-    private BrowserTreeView _treeView;
-
     [SerializeField]
     private TreeViewState _treeState;
 
@@ -20,8 +17,11 @@ public class InternalIconBrowserWindow : EditorWindow
     [NonSerialized]
     private bool _isInitialized;
 
+    private SearchField _searchField;
+    private BrowserTreeView _treeView;
     private Dictionary<int, Texture2D> _iconCache;
     private MultiColumnHeader _header;
+    private double _lastRefreshTime;
 
     [MenuItem("Tools/Internal Icon Browser")]
     private static void OpenWindow()
@@ -106,6 +106,8 @@ public class InternalIconBrowserWindow : EditorWindow
     {
         InitIfNeeded();
 
+        RefreshIconsPeriodically();
+
         var width = _header.state.widthOfAllVisibleColumns;
         var delta = width - position.width;
         _header.state.columns[1].width = _header.state.columns[1].width - delta - 20f;
@@ -116,6 +118,8 @@ public class InternalIconBrowserWindow : EditorWindow
         
         _treeView.searchString = _searchField.OnGUI(_treeView.searchString);
 
+        GUILayout.Label($"Loaded {_iconCache.Count} icons");
+        
         GUILayout.EndHorizontal();
         
         _treeView.OnGUI(EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)));
@@ -123,8 +127,18 @@ public class InternalIconBrowserWindow : EditorWindow
         GUILayout.EndArea();
     }
 
+    void RefreshIconsPeriodically()
+    {
+        if ((EditorApplication.timeSinceStartup - _lastRefreshTime) > 1f)
+        {
+            RefreshIcons();
+        }
+    }
+    
     void RefreshIcons()
     {
+        _lastRefreshTime = EditorApplication.timeSinceStartup;
+        
         _iconCache.Clear();
 
         Texture2D[] t = Resources.FindObjectsOfTypeAll<Texture2D>();
