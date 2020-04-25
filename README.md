@@ -4,7 +4,9 @@ Internal Icon Browser is a simple Editor Window that allows you to browse intern
 
 This tool is inspired by [Unity Internal Icons][1] (thanks to [@p-groarke][2]). It uses the same technique for finding internal icons but with the window layout rebuilt from scratch to improove usability.
 
-![Kiku](Documentation/Window.jpg)
+<p align="center">
+  <img src="Documentation/Window.png" alt="Internal Icon Browser Window" />
+</p>
 
 ## Installation
 
