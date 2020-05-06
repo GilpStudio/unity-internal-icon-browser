@@ -5,7 +5,7 @@ Internal Icon Browser is a simple Editor Window that allows you to browse intern
 This tool is inspired by [Unity Internal Icons][1] (thanks to [@p-groarke][2]). It uses the same technique for finding internal icons but with the window layout rebuilt from scratch to improove usability.
 
 <p align="center">
-  <img src="Documentation/Window.png" alt="Internal Icon Browser Window" />
+  <img src="Documentation~/Window.png" alt="Internal Icon Browser Window" />
 </p>
 
 ## Installation
@@ -33,9 +33,10 @@ Keep in mind that the tool will only find icons that are curently loaded. It sho
 ```none
 <root>
   ├── package.json
-  ├── README.md
   ├── CHANGELOG.md
-  ├── Editor
-  │   ├── GilpStudio.InternalIconBrowser.Editor.asmdef
-  │   └── InternalIconBrowserWindow.cs
+  ├── LICENSE.md
+  ├── README.md
+  └── Editor
+      ├── GilpStudio.InternalIconBrowser.Editor.asmdef
+      └── InternalIconBrowserWindow.cs
 ```
